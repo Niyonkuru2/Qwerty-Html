@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI</title>
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        form{
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            width: 300px;
+        }
+        label{
+            display: block;
+            margin-bottom: 10px;
+        }
+        input{
+            border: none;
+            outline: none;
+            border: 1px solid black;
+            border-radius: 3px;
+            align-items: center;
+            height: 30px;
+        }
+        button{
+            width: 163px;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: block;
+            margin-top: 10px;
+
+        }
+        button:hover{
+           background: #218838;
+        }
+        #result{
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+  <h2 style="text-align: center;">BMI Calculator</h2>
+  <form action="">
+  <label for="">Height</label>
+  <input type="number" id="height" name="height" required> 
+  <label for="">Weight</label>
+  <input type="number" id="weight" name="weight" required> 
+  <button type="button" onclick="calulateBMI()">Calculate</button>
+</form>
+  <div id="result"></div>
+  <script>
+    function calulateBMI(){
+        //get input values
+        let weight = parseFloat(document.getElementById('weight').value);
+        let height = parseFloat(document.getElementById('height').value);
+
+        //validating inputs
+
+    //calculate BMI
+    let bmi = weight/(height * height);
+    // display the result
+    let resultText
+    if (isNaN(weight) || isNaN(height) || weight <= 0 || height <= 0) {
+            alert ("Enter a valid value of height or weight");
+            return
+        }
+        if (weight === "" || height ==="") {
+            alert("Enter value of height or weight");
+            return
+        }
+    if (bmi < 18.5) {
+        resultText = `Your BMI is ${bmi.toFixed(2)}. You are underweight.`;
+    }else if(bmi>= 18.5 && bmi < 24.5){
+        resultText = `Your BMI is ${bmi.toFixed(2)}. You have normal weight.`;
+    }
+    else if(bmi >= 25 && bmi < 29.9){
+        resultText = `Your BMI is ${bmi.toFixed(2)}. You are overweight.`;
+    }else{
+        resultText = `Your BMI is ${bmi.toFixed(2)}. You are Obesity.`;
+    }
+    document.getElementById('result').innerHTML = resultText
+ }  
+  </script>
+</body>
+</html>
